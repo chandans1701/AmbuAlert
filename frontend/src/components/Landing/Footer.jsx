@@ -33,7 +33,6 @@ const Footer = () => {
              <li className="hover:text-cyan-600 hover:translate-x-1 cursor-pointer transition-all duration-200">Real-Time Digital Twin Monitoring</li>
              <li className="hover:text-cyan-600 hover:translate-x-1 cursor-pointer transition-all duration-200">Smart Hospital Allocation System</li>
              <li className="hover:text-cyan-600 hover:translate-x-1 cursor-pointer transition-all duration-200">Predictive Response Intelligence</li>
-             <li className="hover:text-cyan-600 hover:translate-x-1 cursor-pointer transition-all duration-200">Metaverse Visualization Layer</li>
           </ul>
         </div>
 

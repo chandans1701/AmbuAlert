@@ -7,7 +7,7 @@ import EmergencyInput from './pages/EmergencyInput';
 import DecisionEngine from './pages/DecisionEngine';
 import LiveResponse from './pages/LiveResponse';
 import HospitalHub from './pages/HospitalHub';
-import Metaverse from './pages/Metaverse';
+
 
 import { useRole } from './context/RoleContext';
 import { HospitalProvider } from './context/HospitalContext';
@@ -33,7 +33,7 @@ function App() {
              <Route path="decision" element={hasAccess('decision') ? <DecisionEngine /> : <Navigate to="/app" />} />
              <Route path="live" element={hasAccess('live') ? <LiveResponse /> : <Navigate to="/app" />} />
              <Route path="hospital-hub" element={hasAccess('hospital') ? <HospitalHub /> : <Navigate to="/app" />} />
-             <Route path="metaverse" element={hasAccess('metaverse') ? <Metaverse /> : <Navigate to="/app" />} />
+
           </Route>
 
           {/* Catch-all redirect to Landing */}

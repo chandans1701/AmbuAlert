@@ -41,14 +41,6 @@ const Features = () => {
       bg: "bg-indigo-50"
     },
     {
-      icon: Map,
-      title: "Metaverse Ops",
-      description: "3D situational awareness for dispatchers, combining satellite imagery with live traffic vectors.",
-      benefit: "Enhanced spatial grounding.",
-      color: "text-emerald-600",
-      bg: "bg-emerald-50"
-    },
-    {
       icon: LayoutDashboard,
       title: "Unified Command",
       description: "A centralized dashboard for cross-agency coordination between EMS, Fire, and Hospital staff.",

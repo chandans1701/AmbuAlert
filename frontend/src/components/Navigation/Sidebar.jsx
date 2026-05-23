@@ -12,7 +12,6 @@ const Sidebar = ({ isConnected, onReset }) => {
     { id: 'decision', path: '/app/decision', label: 'AI Engine', icon: Activity },
     { id: 'live', path: '/app/live', label: 'Response HUD', icon: HeartPulse },
     { id: 'hospital', path: '/app/hospital-hub', label: 'Hospital Hub', icon: Building2 },
-    { id: 'metaverse', path: '/app/metaverse', label: 'Metaverse Ops', icon: Map },
   ];
 
   const filteredLinks = allNavLinks.filter(link => hasAccess(link.id));
