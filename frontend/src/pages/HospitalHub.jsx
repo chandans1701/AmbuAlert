@@ -15,6 +15,7 @@ import {
   XCircle
 } from 'lucide-react';
 import { socket } from '../socket';
+import { API_BASE } from '../config';
 
 const inferClinicalNeed = (type = '') => {
   const value = type.toUpperCase();
@@ -63,7 +64,7 @@ const HospitalHub = () => {
 
     const bootstrapStatus = async () => {
       try {
-        const response = await fetch('/api/status');
+        const response = await fetch(`${API_BASE}/status`);
         if (!response.ok) throw new Error('status endpoint unavailable');
         const current = await response.json();
         if (mounted) setSysState(current);

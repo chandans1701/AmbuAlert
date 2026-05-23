@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { socket } from '../socket';
+import { API_BASE } from '../config';
 import {
   AlertTriangle, Clock, HeartPulse, LocateFixed,
   Radio, Zap, CheckCircle, Activity, ShieldCheck
@@ -263,7 +264,7 @@ export default function LiveResponse() {
 
   const handleAccept = async (ambulanceId) => {
     try {
-      await fetch('/api/accept-dispatch', {
+      await fetch(`${API_BASE}/accept-dispatch`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ambulanceId })

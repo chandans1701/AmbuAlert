@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BrainCircuit, Cpu, Loader, Network, CheckCircle } from 'lucide-react';
+import { API_BASE } from '../config';
 
 export default function DecisionEngine() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function DecisionEngine() {
 
   useEffect(() => {
     // Fetch current state decision
-    fetch('/api/decision', { method: 'POST' })
+    fetch(`${API_BASE}/decision`, { method: 'POST' })
       .then(res => res.json())
       .then(d => {
         if (d.error || (d.systemStatus !== 'PENDING' && !d.dispatchedAmbulance && !d.ambulance)) {

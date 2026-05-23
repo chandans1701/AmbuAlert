@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Watch, Car, HeartPulse, Activity } from 'lucide-react';
+import { API_BASE } from '../config';
 
 export default function EmergencyInput() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function EmergencyInput() {
   const triggerEmergency = async (payload) => {
     setLoading(true);
     try {
-      await fetch('/api/emergency', {
+      await fetch(`${API_BASE}/emergency`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

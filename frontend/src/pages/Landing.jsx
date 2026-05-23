@@ -8,6 +8,7 @@ import Stats from '../components/Landing/Stats';
 import HowItWorks from '../components/Landing/HowItWorks';
 import Footer from '../components/Landing/Footer';
 import RoleSelector from '../components/Landing/RoleSelector';
+import { API_BASE } from '../config';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Landing = () => {
     // Fetch system status for the footer/stats
     const fetchStatus = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/status');
+        const response = await fetch(`${API_BASE}/status`);
         const data = await response.json();
         setSystemStats(data);
       } catch (error) {
