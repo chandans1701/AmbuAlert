@@ -237,25 +237,48 @@ export default function LiveResponse() {
   }, []);
 
   useEffect(() => {
+    let mounted = true;
+
+    const bootstrapStatus = async () => {
+      try {
+        const response = await fetch(`${API_BASE}/status`);
+        if (!response.ok) throw new Error('status endpoint unavailable');
+        const current = await response.json();
+        if (mounted) {
+          prevStatus.current = current.systemStatus;
+          setSysState(current);
+        }
+      } catch (err) {
+        console.warn('LiveResponse bootstrap status fetch failed:', err);
+      }
+    };
+
     socket.connect();
     socket.on('system_update', (data) => {
-      if (prevStatus.current !== 'ACTIVE' && data.systemStatus === 'ACTIVE') {
-        setScanning(true);
-        setScanStep(1);
-        setTimeout(() => setScanStep(2), 1500);
-        setTimeout(() => { setScanning(false); setScanStep(0); }, 3500);
+      if (mounted) {
+        if (prevStatus.current !== 'ACTIVE' && data.systemStatus === 'ACTIVE') {
+          setScanning(true);
+          setScanStep(1);
+          setTimeout(() => setScanStep(2), 1500);
+          setTimeout(() => { setScanning(false); setScanStep(0); }, 3500);
+        }
+        prevStatus.current = data.systemStatus;
+        setSysState(data);
       }
-      prevStatus.current = data.systemStatus;
-      setSysState(data);
     });
 
     socket.on('SYSTEM_PIVOT', (data) => {
-      setPivotReason(data.reason);
-      setPivotFlash(true);
-      setTimeout(() => setPivotFlash(false), 8000);
+      if (mounted) {
+        setPivotReason(data.reason);
+        setPivotFlash(true);
+        setTimeout(() => setPivotFlash(false), 8000);
+      }
     });
 
+    bootstrapStatus();
+
     return () => {
+      mounted = false;
       socket.off('system_update');
       socket.off('SYSTEM_PIVOT');
       socket.disconnect();
