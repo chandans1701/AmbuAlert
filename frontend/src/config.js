@@ -1,5 +1,7 @@
 // Configuration for backend URL and API base
-export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://ambualert-1.onrender.com';
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL 
+  ? import.meta.env.VITE_BACKEND_URL 
+  : (import.meta.env.DEV ? 'http://localhost:3000' : 'https://ambualert-1.onrender.com');
 
 // API base URL helper:
 // In development, if VITE_BACKEND_URL is not set, we can fall back to relative '/api' 
